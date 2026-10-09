@@ -12,6 +12,7 @@
 		3B48305A2842C76F0060FCFD /* NumberDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4830592842C76F0060FCFD /* NumberDisplay.swift */; };
 		3B48DBCD2AD2060D00E54243 /* ThemeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48DBCC2AD2060D00E54243 /* ThemeCellView.swift */; };
 		3B4E3F0F2E218FB7006CD97C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4E3F0E2E218FB7006CD97C /* Errors.swift */; };
+		3BC0A1012F8E100100CA7001 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0A1002F8E100100CA7000 /* Compatibility.swift */; };
 		3B4E3F112E221293006CD97C /* BestTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4E3F102E221293006CD97C /* BestTimesViewController.swift */; };
 		3B5AB53C27F96F710059BB0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5AB53B27F96F710059BB0A /* AppDelegate.swift */; };
 		3B5AB54227F96F710059BB0A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5AB54127F96F710059BB0A /* GameScene.swift */; };
@@ -34,14 +35,12 @@
 		3BB04F042AA3F01A00893F21 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB04F032AA3F01A00893F21 /* Defaults */; };
 		3BD4B22D2E2D8A9F00798237 /* BindingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4B22C2E2D8A9F00798237 /* BindingsCellView.swift */; };
 		3BD4B22F2E2D971F00798237 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4B22E2E2D971F00798237 /* Binding.swift */; };
-		3BD67C9D2E83BC250024CFA5 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3BD67C9C2E83BC250024CFA5 /* AppIcon.icon */; };
 		3BD95C782B8D99AA00D9BC3B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3BD95C772B8D99AA00D9BC3B /* Credits.rtf */; };
 		3BF1A7642856F7CB00566000 /* GameScene+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1A7632856F7CB00566000 /* GameScene+Input.swift */; };
 		3BF1A78A285ED78F00566000 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1A789285ED78F00566000 /* GeneralViewController.swift */; };
 		3BF1A78E285ED7BE00566000 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1A78C285ED7BE00566000 /* ThemesViewController.swift */; };
 		3BF1A791285ED7CF00566000 /* BindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1A790285ED7CF00566000 /* BindingsViewController.swift */; };
 		3BF1A7CE2866AAD600566000 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1A7CD2866AAD600566000 /* WindowController.swift */; };
-		3BF1D9B02BC0E5A70005200A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3BF1D9AF2BC0E5A70005200A /* Collections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +49,7 @@
 		3B4830592842C76F0060FCFD /* NumberDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDisplay.swift; sourceTree = "<group>"; };
 		3B48DBCC2AD2060D00E54243 /* ThemeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCellView.swift; sourceTree = "<group>"; };
 		3B4E3F0E2E218FB7006CD97C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		3BC0A1002F8E100100CA7000 /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
 		3B4E3F102E221293006CD97C /* BestTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestTimesViewController.swift; sourceTree = "<group>"; };
 		3B5AB53827F96F710059BB0A /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5AB53B27F96F710059BB0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 		3BB6CA15290DE6F2009F339D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3BD4B22C2E2D8A9F00798237 /* BindingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingsCellView.swift; sourceTree = "<group>"; };
 		3BD4B22E2E2D971F00798237 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
-		3BD67C9C2E83BC250024CFA5 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		3BD95C772B8D99AA00D9BC3B /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		3BF1A7632856F7CB00566000 /* GameScene+Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Input.swift"; sourceTree = "<group>"; };
 		3BF1A789285ED78F00566000 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +85,6 @@
 		3B5AB53527F96F710059BB0A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				3BF1D9B02BC0E5A70005200A /* Collections in Frameworks */,
 				3BB04F042AA3F01A00893F21 /* Defaults in Frameworks */,
 				3B9DF10928971939007CADA6 /* Sparkle in Frameworks */,
 			);
@@ -135,7 +133,7 @@
 				3B5B08292E0B1F060067FAE5 /* Defaults.swift */,
 				3B5B082C2E0B40EE0067FAE5 /* Notifications.swift */,
 				3B4E3F0E2E218FB7006CD97C /* Errors.swift */,
-				3BD67C9C2E83BC250024CFA5 /* AppIcon.icon */,
+				3BC0A1002F8E100100CA7000 /* Compatibility.swift */,
 				3B5AB54527F96F720059BB0A /* Assets.xcassets */,
 				3B5AB54727F96F720059BB0A /* Main.storyboard */,
 				3BD95C772B8D99AA00D9BC3B /* Credits.rtf */,
@@ -208,7 +206,6 @@
 			packageProductDependencies = (
 				3B9DF10828971939007CADA6 /* Sparkle */,
 				3BB04F032AA3F01A00893F21 /* Defaults */,
-				3BF1D9AF2BC0E5A70005200A /* Collections */,
 			);
 			productName = Minesweeper;
 			productReference = 3B5AB53827F96F710059BB0A /* Minesweeper.app */;
@@ -240,7 +237,6 @@
 			packageReferences = (
 				3B9DF10728971939007CADA6 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				3BB04F022AA3F01A00893F21 /* XCRemoteSwiftPackageReference "Defaults" */,
-				3BF1D9AE2BC0E5A70005200A /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 3B5AB53927F96F710059BB0A /* Products */;
@@ -257,7 +253,6 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 				3B5AB54627F96F720059BB0A /* Assets.xcassets in Resources */,
-				3BD67C9D2E83BC250024CFA5 /* AppIcon.icon in Resources */,
 				3BD95C782B8D99AA00D9BC3B /* Credits.rtf in Resources */,
 				3B5AB54927F96F720059BB0A /* Main.storyboard in Resources */,
 			);
@@ -288,6 +283,7 @@
 				3B6AB6A52C03FA4000297AA8 /* Stats.swift in Sources */,
 				3B402A132E15B1D600EB9ACE /* CustomGameView.swift in Sources */,
 				3B4E3F0F2E218FB7006CD97C /* Errors.swift in Sources */,
+				3BC0A1012F8E100100CA7001 /* Compatibility.swift in Sources */,
 				3B5B08282E0B18010067FAE5 /* ThemeManager.swift in Sources */,
 				3B5AB53C27F96F710059BB0A /* AppDelegate.swift in Sources */,
 				3B34CCBC2869FE3800B76AE6 /* Theme.swift in Sources */,
@@ -365,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -423,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -456,13 +452,15 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				ARCHS = "arm64 x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.5.2;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.camerongoddard.Minesweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -489,12 +487,14 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				ARCHS = "arm64 x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.5.2;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.camerongoddard.Minesweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -533,15 +533,7 @@
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				kind = exactVersion;
-				version = 9.0.6;
-			};
-		};
-		3BF1D9AE2BC0E5A70005200A /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				version = 7.3.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -556,11 +548,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3BB04F022AA3F01A00893F21 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		3BF1D9AF2BC0E5A70005200A /* Collections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3BF1D9AE2BC0E5A70005200A /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = Collections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

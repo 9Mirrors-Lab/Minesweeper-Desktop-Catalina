@@ -48,7 +48,7 @@ class GeneralViewController: NSViewController {
     }
 
     @IBAction func toolbarDifficultyCheckboxClicked(_ sender: NSButton) {
-        Defaults[.General.toolbarDifficulty].toggle()
+        Defaults.toggle(.General.toolbarDifficulty)
         NotificationCenter.default.post(name: .setSubtitle, object: nil)
     }
 
@@ -57,15 +57,15 @@ class GeneralViewController: NSViewController {
     }
 
     @IBAction func scaleSliderChanged(_ sender: NSSlider) {
-        Defaults[.General.scale] = sender.doubleValue
+        Defaults[.General.scale] = CGFloat(sender.doubleValue)
         NotificationCenter.default.post(name: .setScale, object: nil)
     }
 
     @IBAction func safeFirstClickCheckboxClicked(_ sender: NSButton) {
-        Defaults[.General.safeFirstClick].toggle()
+        Defaults.toggle(.General.safeFirstClick)
     }
 
     @IBAction func useQuestionsCheckboxClicked(_ sender: NSButton) {
-        Defaults[.General.questions].toggle()
+        Defaults.toggle(.General.questions)
     }
 }

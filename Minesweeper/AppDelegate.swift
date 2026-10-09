@@ -9,7 +9,6 @@ import Cocoa
 import Defaults
 import Sparkle
 import SwiftUI
-import UniformTypeIdentifiers
 
 @main
 @MainActor
@@ -57,8 +56,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         hostingController = NSHostingController(rootView: CustomGameView(onDismiss: { [weak self] in
-            guard let self else { return }
-            self.hostingController?.presentingViewController?.dismiss(self.hostingController!)
+            guard let self = self, let hc = self.hostingController else { return }
+            hc.presentingViewController?.dismiss(hc)
         }))
     }
 
@@ -131,9 +130,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         controller.difficulty = "Custom"
         Defaults[.Game.difficulty] = "Custom"
 
-        Defaults[.Game.customDifficulty][0] = (notification.object as! [Int])[0]
-        Defaults[.Game.customDifficulty][1] = (notification.object as! [Int])[1]
-        Defaults[.Game.customDifficulty][2] = (notification.object as! [Int])[2]
+        let sizes = notification.object as! [Int]
+        Defaults[.Game.customDifficulty] = [sizes[0], sizes[1], sizes[2]]
 
         window.contentViewController = controller
     }
@@ -145,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         else { return }
 
         let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.mbf]
+        Compatibility.configureSavePanel(savePanel, extensions: ["mbf"])
         savePanel.nameFieldStringValue = "board.mbf"
 
         savePanel.beginSheetModal(
@@ -168,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let window = NSApplication.shared.mainWindow else { return }
 
         let openPanel = NSOpenPanel()
-        openPanel.allowedContentTypes = [.mbf]
+        Compatibility.configureOpenPanel(openPanel, extensions: ["mbf"])
 
         openPanel.beginSheetModal(
             for: window,
@@ -218,9 +216,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
 
-            Defaults[.Game.customDifficulty][0] = rows
-            Defaults[.Game.customDifficulty][1] = cols
-            Defaults[.Game.customDifficulty][2] = mines
+            Defaults[.Game.customDifficulty] = [rows, cols, mines]
 
             oldScene.gameTimer.reset()
 
@@ -262,7 +258,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let item = NSMenuItem(title: "Keep on Top", action: #selector(toggleKeepOnTop(_:)), keyEquivalent: "")
 
         item.target = self
-        item.image = NSImage(systemSymbolName: "rectangle.badge.plus", accessibilityDescription: nil)
+        item.image = Compatibility.symbolImage("rectangle.badge.plus")
 
         windowMenu.addItem(.separator())
         windowMenu.addItem(item)
@@ -277,10 +273,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Defaults[.General.keepOnTop] = shouldFloat
         }
     }
-}
-
-extension UTType {
-    public static let mbf = UTType(exportedAs: "com.camerongoddard.Minesweeper.mbf")
 }
 
 extension NSStoryboard {

@@ -3,3 +3,6 @@
 
 # Xcode
 Minesweeper.xcodeproj/project.xcworkspace/xcuserdata
+
+# Editor
+.cursor/

@@ -56,12 +56,17 @@ class ThemeCellView: NSTableCellView {
 
     @IBAction func favoriteButtonPressed(_ sender: NSButton) {
         if sender.state == .off {
-            themeFavorite.image = .init(systemSymbolName: "star", accessibilityDescription: nil)
-            Defaults[.Themes.favorites].remove(
-                at: Defaults[.Themes.favorites].firstIndex(of: themeName.stringValue)!)
+            themeFavorite.image = Compatibility.symbolImage("star")
+            Defaults.update(.Themes.favorites) { favorites in
+                if let index = favorites.firstIndex(of: themeName.stringValue) {
+                    favorites.remove(at: index)
+                }
+            }
         } else {
-            themeFavorite.image = .init(systemSymbolName: "star.fill", accessibilityDescription: nil)
-            Defaults[.Themes.favorites].append(themeName.stringValue)
+            themeFavorite.image = Compatibility.symbolImage("star.fill")
+            Defaults.update(.Themes.favorites) { favorites in
+                favorites.append(themeName.stringValue)
+            }
         }
         ThemeManager.shared.theme(with: themeName.stringValue).isFavorite.toggle()
         NotificationCenter.default.post(name: .updateFavorites, object: nil)
@@ -69,6 +74,6 @@ class ThemeCellView: NSTableCellView {
 
     func setFavorite() {
         themeFavorite.state = .on
-        themeFavorite.image = .init(systemSymbolName: "star.fill", accessibilityDescription: nil)
+        themeFavorite.image = Compatibility.symbolImage("star.fill")
     }
 }

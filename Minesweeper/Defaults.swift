@@ -43,3 +43,16 @@ extension Defaults.Keys {
         static let bestTimes = Key<[Double]>("bestTimes", default: [-1, -1, -1, -1, -1, -1, -1, -1, -1])
     }
 }
+
+extension Defaults {
+    /// Defaults 7 has get/set only (no `_modify`), so mutate via copy-write helpers.
+    static func toggle(_ key: Key<Bool>) {
+        self[key] = !self[key]
+    }
+
+    static func update<Value>(_ key: Key<Value>, _ body: (inout Value) -> Void) {
+        var value = self[key]
+        body(&value)
+        self[key] = value
+    }
+}

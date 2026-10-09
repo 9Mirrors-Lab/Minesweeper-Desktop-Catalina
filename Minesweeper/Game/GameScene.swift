@@ -142,22 +142,18 @@ class GameScene: SKScene {
             return
         }
 
-        if gameTimer.elapsedTime < Defaults[.BestTimes.bestTimes][offset]
-            || Defaults[.BestTimes.bestTimes][offset] == -1
-        {
-            Defaults[.BestTimes.bestTimes][offset + 2] = Defaults[.BestTimes.bestTimes][offset + 1]
-            Defaults[.BestTimes.bestTimes][offset + 1] = Defaults[.BestTimes.bestTimes][offset]
-            Defaults[.BestTimes.bestTimes][offset] = gameTimer.elapsedTime
-        } else if gameTimer.elapsedTime < Defaults[.BestTimes.bestTimes][offset + 1]
-            || Defaults[.BestTimes.bestTimes][offset + 1] == -1
-        {
-            Defaults[.BestTimes.bestTimes][offset + 2] = Defaults[.BestTimes.bestTimes][offset + 1]
-            Defaults[.BestTimes.bestTimes][offset + 1] = gameTimer.elapsedTime
-        } else if gameTimer.elapsedTime < Defaults[.BestTimes.bestTimes][offset + 2]
-            || Defaults[.BestTimes.bestTimes][offset + 2] == -1
-        {
-            Defaults[.BestTimes.bestTimes][offset + 2] = gameTimer.elapsedTime
+        var bestTimes = Defaults[.BestTimes.bestTimes]
+        if gameTimer.elapsedTime < bestTimes[offset] || bestTimes[offset] == -1 {
+            bestTimes[offset + 2] = bestTimes[offset + 1]
+            bestTimes[offset + 1] = bestTimes[offset]
+            bestTimes[offset] = gameTimer.elapsedTime
+        } else if gameTimer.elapsedTime < bestTimes[offset + 1] || bestTimes[offset + 1] == -1 {
+            bestTimes[offset + 2] = bestTimes[offset + 1]
+            bestTimes[offset + 1] = gameTimer.elapsedTime
+        } else if gameTimer.elapsedTime < bestTimes[offset + 2] || bestTimes[offset + 2] == -1 {
+            bestTimes[offset + 2] = gameTimer.elapsedTime
         }
+        Defaults[.BestTimes.bestTimes] = bestTimes
     }
 
     /// Handles game reset logic for the board, stats, and number displays

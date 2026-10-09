@@ -8,7 +8,6 @@
 import Cocoa
 import Defaults
 import GameplayKit
-import UniformTypeIdentifiers
 
 class ThemesViewController: NSViewController {
 
@@ -67,12 +66,8 @@ class ThemesViewController: NSViewController {
     @IBAction func addDeleteControlPressed(_ sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
             let openPanel = NSOpenPanel()
-            openPanel.allowedContentTypes = [
-                UTType(filenameExtension: "bmp")!,
-                UTType(filenameExtension: "png")!,
-                UTType(filenameExtension: "jpg")!,
-                UTType(filenameExtension: "jpeg")!,
-            ]
+            Compatibility.configureOpenPanel(
+                openPanel, extensions: ["bmp", "png", "jpg", "jpeg"])
 
             openPanel.beginSheetModal(
                 for: self.view.window!,
@@ -116,8 +111,11 @@ class ThemesViewController: NSViewController {
                 // TODO: Investigate this bug: Delete a favorited item, add any other back in
                 ThemeManager.shared.themes.remove(
                     at: ThemeManager.shared.themes.firstIndex(of: themes[oldRow])!)
-                if let index = Defaults[.Themes.favorites].firstIndex(of: themes[oldRow].name) {
-                    Defaults[.Themes.favorites].remove(at: index)
+                let removedName = themes[oldRow].name
+                Defaults.update(.Themes.favorites) { favorites in
+                    if let index = favorites.firstIndex(of: removedName) {
+                        favorites.remove(at: index)
+                    }
                 }
                 themes.remove(at: themes.firstIndex(of: themes[oldRow])!)
                 NotificationCenter.default.post(name: .updateFavorites, object: nil)

@@ -6,14 +6,14 @@
 //
 
 import Cocoa
-import OrderedCollections
 
 class StatsViewController: NSViewController {
 
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var timerField: NSTextField!
 
-    var stats: OrderedDictionary = [
+    private let statKeys = ["3BV", "3BV/s", "Left", "Right", "Middle", "Estimated"]
+    var stats: [String: Double] = [
         "3BV": 0,
         "3BV/s": 0.0,
         "Left": 0,
@@ -75,15 +75,6 @@ class StatsViewController: NSViewController {
             stats["Middle"]! += 1
         }
 
-        //        TODO: Add back in
-        //        if (totalClicks == 0) {
-        //            stats["IOE"] = 0
-        //            stats["Throughput"] = 0
-        //        } else {
-        //            stats["IOE"] = Double(round(stats["3BV"]! / Double(totalClicks)) / 1000)
-        //            stats["Throughput"] = Double(round(stats["3BV"]! / Double(effectiveClicks)) / 1000)
-        //        }
-
         tableView.reloadData()
     }
 
@@ -107,8 +98,8 @@ class StatsViewController: NSViewController {
         totalClicks = 0
         effectiveClicks = 0
 
-        for i in 0..<stats.values.count {
-            stats.values[i] = 0
+        for key in statKeys {
+            stats[key] = 0
         }
 
         revealStats = false
@@ -123,32 +114,26 @@ extension StatsViewController: GameTimerDelegate {
         let hundredths = Int((elapsedTime.truncatingRemainder(dividingBy: 1)) * 100)
 
         timerField.stringValue = String(format: "%d.%02d", seconds, hundredths)
-
-        //        TODO: Add back in
-        //        if (elapsedTime.magnitude == 0) {
-        //             stats["IOS"] = 0
-        //             stats["RQP"] = 0
-        //        } else {
-        //             stats["IOS"] = Double(round(1000 * log(stats["3BV"]!) / log(elapsedTime.magnitude)) / 1000)
-        //             stats["RQP"] = Double(round(1000 * elapsedTime.magnitude / stats["3BV/s"]!) / 1000)
-        //        }
     }
 
 }
 
 extension StatsViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return stats.count
+        return statKeys.count
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let key = statKeys[row]
+        let value = stats[key] ?? 0
+
         if tableColumn == tableView.tableColumns[0] {
             guard
                 let statsLabelCell = tableView.makeView(
                     withIdentifier: .init(rawValue: "statsLabelCell"),
                     owner: self) as? NSTableCellView
             else { return nil }
-            statsLabelCell.textField!.stringValue = stats.elements[row].key
+            statsLabelCell.textField!.stringValue = key
             return statsLabelCell
         } else {
             guard
@@ -157,23 +142,23 @@ extension StatsViewController: NSTableViewDataSource {
                     owner: self) as? NSTableCellView
             else { return nil }
 
-            switch stats.elements[row].key {
+            switch key {
             case "3BV":
                 if revealStats {
                     statsValueCell.textField!.stringValue =
-                        "\(Int(stats.elements[row].value))/\(total3BV)"
+                        "\(Int(value))/\(total3BV)"
                 } else {
                     statsValueCell.textField!.stringValue = "•/•"
                 }
             case "3BV/s", "Estimated":
                 if revealStats {
                     statsValueCell.textField!.stringValue = String(
-                        format: "%.2f", stats.elements[row].value)
+                        format: "%.2f", value)
                 } else {
                     statsValueCell.textField!.stringValue = "•••"
                 }
             case "Left", "Middle", "Right":
-                statsValueCell.textField!.stringValue = "\(Int(stats.elements[row].value))"
+                statsValueCell.textField!.stringValue = "\(Int(value))"
             default: break
             }
 

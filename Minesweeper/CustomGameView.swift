@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomGameView: View {
 
-    var onDismiss: (@Sendable @MainActor () -> Void)?
+    var onDismiss: (() -> Void)?
 
     @State private var rows: String = ""
     @State private var columns: String = ""
@@ -52,42 +52,48 @@ struct CustomGameView: View {
     }
 
     var body: some View {
-        VStack {
-            Form {
-                Section {
-                    VStack(alignment: .leading) {
-                        TextField("Rows", text: $rows, prompt: Text("Rows"))
-                        if rowsError {
-                            Text("Invalid number of rows")
-                                .font(.caption)
-                                .foregroundColor(.red)
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Custom Game")
+                .font(.headline)
+            Text("Difficulty: \(difficultyLabel)")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            VStack(alignment: .leading, spacing: 4) {
+                TextField("Rows", text: $rows)
+                    .onChangeCompat(of: rows) { input in
+                        if let val = Int(input), val > 0 {
+                            rowsError = false
+                        } else {
+                            rowsError = true
                         }
                     }
-
-                    VStack(alignment: .leading) {
-                        TextField("Columns", text: $columns, prompt: Text("Columns"))
-                        if colsError {
-                            Text("Invalid number of columns")
-                                .font(.caption)
-                                .foregroundColor(.red)
-                        }
-                    }
-
-                    Slider(value: $mines, in: 0...maxMines) {
-                        Text("\(Int(mines)) Mines")
-                    }
-                } header: {
-                    VStack(alignment: .leading) {
-                        Text("Custom Game")
-                        Text("Difficulty: \(difficultyLabel)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                if rowsError {
+                    Text("Invalid number of rows")
+                        .font(.caption)
+                        .foregroundColor(.red)
                 }
             }
-            .formStyle(.grouped)
-            .scrollContentBackground(.hidden)
-            .scrollDisabled(true)
+
+            VStack(alignment: .leading, spacing: 4) {
+                TextField("Columns", text: $columns)
+                    .onChangeCompat(of: columns) { input in
+                        if let val = Int(input), val > 0 {
+                            colsError = false
+                        } else {
+                            colsError = true
+                        }
+                    }
+                if colsError {
+                    Text("Invalid number of columns")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                }
+            }
+
+            Slider(value: $mines, in: 0...max(maxMines, 0)) {
+                Text("\(Int(mines)) Mines")
+            }
 
             Divider()
 
@@ -95,7 +101,8 @@ struct CustomGameView: View {
                 Button("Random") {
                     rows = String(Int.random(in: 1..<40))
                     columns = String(Int.random(in: 1..<40))
-                    mines = .random(in: 1..<maxMines)
+                    let max = maxMines
+                    mines = max > 1 ? .random(in: 1..<max) : 0
                 }
                 Spacer()
                 Button("Cancel") {
@@ -119,30 +126,17 @@ struct CustomGameView: View {
                 }
                 .keyboardShortcut(.defaultAction)
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 20)
-            .padding(.top, 12)
-            .onChange(
-                of: rows,
-                perform: { input in
-                    if let val = Int(input), val > 0 {
-                        rowsError = false
-                    } else {
-                        rowsError = true
-                    }
-                }
-            )
-            .onChange(
-                of: columns,
-                perform: { input in
-                    if let val = Int(input), val > 0 {
-                        colsError = false
-                    } else {
-                        colsError = true
-                    }
-                })
         }
+        .padding(20)
         .frame(width: 350)
         .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+private extension View {
+    /// `onChange(of:perform:)` is available on Catalina; keep a single call site style.
+    @ViewBuilder
+    func onChangeCompat(of value: String, perform action: @escaping (String) -> Void) -> some View {
+        self.onChange(of: value, perform: action)
     }
 }

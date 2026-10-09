@@ -17,14 +17,7 @@ class WindowController: NSWindowController {
         let item = NSMenuToolbarItem(itemIdentifier: .toolbarThemesMenuItem)
         item.label = "Themes"
         item.toolTip = "Themes"
-
-        if #available(macOS 26.0, *) {
-            item.image = NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)?
-                .withSymbolConfiguration(.init(scale: .medium))
-        } else {
-            item.image = NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)
-        }
-
+        item.image = Compatibility.symbolImage("paintbrush")
         return item
     }()
 
@@ -197,15 +190,9 @@ extension WindowController: NSToolbarDelegate {
             let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
             item.delegate = self
 
-            let shareImage: NSImage?
-            if #available(macOS 26.0, *) {
-                shareImage = NSImage(
-                    systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)?
-                    .withSymbolConfiguration(.init(scale: .medium))
+            let shareImage = Compatibility.symbolImage("square.and.arrow.up")
+            if #available(macOS 11.0, *) {
                 item.image = shareImage
-            } else {
-                shareImage = NSImage(
-                    systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
             }
             item.menuFormRepresentation?.image = shareImage
 
@@ -220,13 +207,10 @@ extension WindowController: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.label = "Stats"
             item.toolTip = "Stats"
-            item.isBordered = true
-            if #available(macOS 26.0, *) {
-                item.image = NSImage(systemSymbolName: "chart.bar", accessibilityDescription: nil)?
-                    .withSymbolConfiguration(.init(scale: .medium))
-            } else {
-                item.image = NSImage(systemSymbolName: "chart.bar", accessibilityDescription: nil)
+            if #available(macOS 11.0, *) {
+                item.isBordered = true
             }
+            item.image = Compatibility.symbolImage("chart.bar")
             item.action = #selector(toggleStatsWindow)
             return item
         }
